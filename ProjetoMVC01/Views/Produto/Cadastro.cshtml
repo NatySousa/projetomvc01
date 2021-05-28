@@ -1,0 +1,52 @@
+﻿@model ProjetoMVC01.Models.ProdutoCadastroModel
+@{
+    ViewData["Title"] = "Cadastro";
+    Layout = "~/Views/Templates/Layout.cshtml";
+}
+
+<h3>Cadastro de Produto</h3>
+<p>
+    Preencha o formulário para incluir um produto.
+</p>
+<hr />
+
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-secondary mb-2">
+        <strong>@TempData["Mensagem"]</strong>
+    </div>
+}
+
+@using (Html.BeginForm()) //BeginForm defini onde começa e onde termina o formulário
+                         //o @ é usado para marcar que vai ser usado linguagem C# e não HTML
+{
+    <label>Nome do produto:</label>
+    @Html.TextBoxFor(Model => Model.Nome, new { @class = "form-control" }) // textbox vai criar uma caixa de texto para o usuario digitar
+    <div class="text-danger">
+        <!-- tex-danger : vai escrever um texto de alerta em vermelho-->
+        @Html.ValidationMessageFor(mode => Model.Nome)
+    </div>
+    <br />
+
+    <label>Preço do produto:</label>
+    @Html.TextBoxFor(Model => Model.Preco, new { @class = "form-control" }) //, new { @class = "form-control" })) usado para dar "forma" a caixa de texto
+    <div class="text-danger">
+        <!-- tex-danger : vai escrever um texto de alerta em vermelho-->
+        @Html.ValidationMessageFor(mode => Model.Preco)
+    </div>
+    <br />
+
+    <label>Quantidade do produto:</label>
+    @Html.TextBoxFor(Model => Model.Quantidade, new { @class = "form-control" })
+    <div class="text-danger">
+        <!-- tex-danger : vai escrever um texto de alerta em vermelho-->
+        @Html.ValidationMessageFor(mode => Model.Quantidade) <!-- vai escrever o texto de alerta em vermelho-->
+    </div>
+    <br />
+
+    <input type="submit" value="Realizar Cadastro"
+           class="btn btn-success" />
+
+
+
+}
